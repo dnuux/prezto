@@ -1,8 +1,8 @@
-#compdef cdls popdls pushdls
+#compdef cdl popdls pushdls
 #autoload
 
 #
-# Completes cdls, popdls, and pushdls.
+# Completes cdl, popdls, and pushdls.
 #
 # Authors:
 #   Sorin Ionescu <sorin.ionescu@gmail.com>

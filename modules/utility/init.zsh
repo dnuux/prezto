@@ -46,7 +46,7 @@ alias e='${(z)EDITOR}'
 alias exe='chmod +x'
 alias h='history'
 alias ln="${aliases[ln]:-ln} -i"
-alias memcheck='valgrind --leak-check=full'
+alias memcheck='valgrind --leak-check=full --show-reachable=yes'
 alias mkdir="${aliases[mkdir]:-mkdir} -p"
 alias myip='curl http://icanhazip.com'
 alias nocomment='egrep -v "^\s*(#|$)"'
