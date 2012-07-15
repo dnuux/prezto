@@ -247,7 +247,7 @@ function delete_short_mp3 {
 
 # Convert a video file to an MP3 file.
 function tomp3 {
-  ffmpeg -i "$1" -vn ac 2 -ar 44100 -ab 320k -f mp3 "$(2:-output.mp3)"
+  ffmpeg -i "$1" -vn -ac 2 -ar 44100 -ab 320k -f mp3 "${2:-${1%.*}.mp3}"
 }
 
 # Compile Zsh files.
