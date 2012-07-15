@@ -10,7 +10,7 @@ autoload -Uz url-quote-magic
 zle -N self-insert url-quote-magic
 
 # General
-setopt INTERACTIVECOMMENTS  # Allow comments in commands
+setopt INTERACTIVECOMMENTS  # Allow comments in commands.
 setopt BRACE_CCL            # Allow brace character class list expansion.
 setopt RC_QUOTES            # Allow 'Henry''s Garage' instead of 'Henry'\''s Garage'.
 unsetopt MAIL_WARNING       # Don't print a warning message if a mail file has been accessed.

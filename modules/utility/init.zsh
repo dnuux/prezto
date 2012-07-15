@@ -223,6 +223,14 @@ function swap {
   mv $tmpfile "$2"
 }
 
+# Replace spaces with underscores in filenames.
+function remove_spaces {
+  while (( $# )); do
+    mv "$1" `echo "$1" | tr ' ' _`
+    shift
+  done
+}
+
 # Backup documents from a remote computer.
 function backup {
   rsync -avz -e ssh "$1":Documents/ "$HOME/backups/$1"
