@@ -19,66 +19,91 @@ setopt CORRECT
 alias ack='nocorrect ack'
 alias cd='nocorrect cd'
 alias cp='nocorrect cp'
-alias ebuild='nocorrect ebuild'
 alias gcc='nocorrect gcc'
-alias gist='nocorrect gist'
 alias grep='nocorrect grep'
-alias heroku='nocorrect heroku'
 alias ln='nocorrect ln'
 alias man='nocorrect man'
 alias mkdir='nocorrect mkdir'
 alias mv='nocorrect mv'
-alias mysql='nocorrect mysql'
 alias rm='nocorrect rm'
 alias scp='nocorrect scp'
 
 # Disable globbing.
+alias calc='noglob calc'
 alias fc='noglob fc'
 alias find='noglob find'
 alias history='noglob history'
 alias locate='noglob locate'
-alias rake='noglob rake'
 
 # Define general aliases.
 alias _='sudo'
+alias agrep='agrep -2i'
 alias b='${(z)BROWSER}'
-alias cp="${aliases[cp]:-cp} -i"
+alias cal='cal -m'
+alias cdd='cd -'
+alias die='pkill -9'
 alias e='${(z)EDITOR}'
+alias exe='chmod +x'
+alias h='history'
 alias ln="${aliases[ln]:-ln} -i"
+alias memcheck='valgrind --leak-check=full'
 alias mkdir="${aliases[mkdir]:-mkdir} -p"
-alias mv="${aliases[mv]:-mv} -i"
+alias myip='curl http://icanhazip.com'
+alias nocomment='egrep -v "^\s*(#|$)"'
+alias off='xset dpms force off'
 alias p='${(z)PAGER}'
+alias path='echo -e ${PATH//:/\\n}'
+alias pf='ps aux | grep -i'
+alias pg='ping -c 1 google.com | tail -3'
+alias play='cmus-remote -o && mplyaer -really-quiet'
 alias po='popd'
+alias ports='netstat --numeric --programs --inet'
 alias pu='pushd'
-alias rm="${aliases[rm]:-rm} -i"
+alias redshift='redshift -l 60.1:24.5 -t 6500:4500 -b 0.9 -m vidmode'
+alias t='t --task-dir ~/tasks --delete-if-empty'
 alias type='type -a'
+alias undo='undo -i'
+alias vi='vim'
+alias wall='feh --bg-scale'
+alias x='extract'
+alias xl='ls-archive'
+
+# Define suffix aliases.
+alias -s {htm,html,php}="$BROWSER"
+alias -s {txt,c,cpp,h,conf,cfg}="$EDITOR"
+alias -s {jpg,jpeg,bmp,gif,png}="feh"
+alias -s pdf="zathura"
 
 # ls
-if is-callable 'dircolors'; then
-  # GNU Core Utilities
-  alias ls='ls --group-directories-first'
-
-  if zstyle -t ':omz:module:utility:ls' color; then
-    if [[ -s "$HOME/.dir_colors" ]]; then
-      eval "$(dircolors "$HOME/.dir_colors")"
-    else
-      eval "$(dircolors)"
-    fi
-    alias ls="$aliases[ls] --color=auto"
-  else
-    alias ls="$aliases[ls] -F"
-  fi
+if (( $+commands[ls++] )); then
+  alias ls='ls++'
 else
-  # BSD Core Utilities
-  if zstyle -t ':omz:module:utility:ls' color; then
-    export LSCOLORS="exfxcxdxbxegedabagacad"
-    alias ls="ls -G"
+  if is-callable 'dircolors'; then
+    # GNU Core Utilities
+    alias ls='ls --group-directories-first'
+
+    if zstyle -t ':omz:module:utility:ls' color; then
+      if [[ -s "$HOME/.dir_colors" ]]; then
+        eval "$(dircolors "$HOME/.dir_colors")"
+      else
+        eval "$(dircolors)"
+      fi
+      alias ls="$aliases[ls] --color=auto"
+    else
+      alias ls="$aliases[ls] -F"
+    fi
   else
-    alias ls='ls -F'
+    # BSD Core Utilities
+    if zstyle -t ':omz:module:utility:ls' color; then
+      export LSCOLORS="exfxcxdxbxegedabagacad"
+      alias ls="ls -G"
+    else
+      alias ls='ls -F'
+    fi
   fi
 fi
 
-alias l='ls -1A'         # Lists in one column, hidden files.
+alias l='ls'             # Darn fast fingers.
 alias ll='ls -lh'        # Lists human readable sizes.
 alias lr='ll -R'         # Lists human readable sizes, recursively.
 alias la='ll -A'         # Lists human readable sizes, hidden files.
@@ -98,14 +123,14 @@ else
   alias o='xdg-open'
   alias get='wget --continue --progress=bar --timestamping'
 
-  if (( $+commands[xclip] )); then
-    alias pbcopy='xclip -selection clipboard -in'
-    alias pbpaste='xclip -selection clipboard -out'
-  fi
-
   if (( $+commands[xsel] )); then
     alias pbcopy='xsel --clipboard --input'
     alias pbpaste='xsel --clipboard --output'
+  fi
+
+  if (( $+commands[xclip] )); then
+    alias pbcopy='xclip -selection clipboard -in'
+    alias pbpaste='xclip -selection clipboard -out'
   fi
 fi
 
@@ -123,6 +148,12 @@ else
   alias topm='top -o vsize'
 fi
 
+# This is so idiotic.
+if (( $+commands[python2] )); then
+  alias python='python2'
+  alias ipython='ipython2'
+fi
+
 # Miscellaneous
 
 # Serves a directory via HTTP.
@@ -136,8 +167,8 @@ function mkdcd {
 }
 
 # Changes to a directory and lists its contents.
-function cdls {
-  builtin cd "$argv[-1]" && ls "${(@)argv[1,-2]}"
+function cdl {
+  builtin cd "${@:-$HOME}" && ls "${(@)argv[1,-2]}"
 }
 
 # Pushes an entry onto the directory stack and lists its contents.
@@ -162,6 +193,60 @@ function find-exec {
 
 # Displays user owned processes status.
 function psu {
-  ps -{U,u}" ${1:-$USER}" -o 'pid,%cpu,%mem,command' "${(@)argv[2,-1]}"
+  ps -u "${1:-$USER}" -o 'pid,%cpu,%mem,command' "${(@)argv[2,-1]}"
+}
+
+# Handy calculator.
+function calc {
+  awk "BEGIN { print $@ }"
+}
+
+# Go up the directory hierarchy.
+function up {
+  for parent in {1..${1:-1}}; do
+    builtin cd ..
+  done
+}
+
+# Set the CPU governor.
+function cpu {
+  for i in 0 1; do
+    sudo cpufreq-set -c $i -g $1
+  done
+}
+
+# Swap two filenames.
+function swap {
+  local tmpfile=tmp.$$
+  mv "$1" $tmpfile
+  mv "$2" "$1"
+  mv $tmpfile "$2"
+}
+
+# Backup documents from a remote computer.
+function backup {
+  rsync -avz -e ssh "$1":Documents/ "$HOME/backups/$1"
+}
+
+# Remove short MP3 files in current directory.
+function delete_short_mp3 {
+  for file in *.mp3; do
+    if (( $(mp3info -p "%S" "$file") < ${1:-60} )); then
+      rm "$file"
+    fi
+  done
+}
+
+# Convert a video file to an MP3 file.
+function tomp3 {
+  ffmpeg -i "$1" -vn ac 2 -ar 44100 -ab 320k -f mp3 "$(2:-output.mp3)"
+}
+
+# Compile Zsh files.
+function zc {
+  find "$HOME/.oh-my-zsh/" -iname '*.zsh' -print0 | xargs -P2 -0 -i zsh -c "zcompile '{}'"
+  for rcfile in shenv shrc login profile; do
+    zcompile "$HOME/.z${rcfile}"
+  done
 }
 

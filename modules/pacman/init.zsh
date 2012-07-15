@@ -9,60 +9,27 @@
 #   https://wiki.archlinux.org/index.php/Pacman_Tips
 #
 
-# Get the Pacman frontend.
-zstyle -s ':omz:module:pacman' frontend '_pacman_frontend'
+# Functions
 
-if (( $+commands[$_pacman_frontend] )); then
-  alias pacman="$_pacman_frontend"
-
-  if [[ -s "${0:h}/${_pacman_frontend}.zsh" ]]; then
-    source "${0:h}/${_pacman_frontend}.zsh"
+# Pacman wrapper.
+function pac {
+  if [[ "$1" =~ ".*u" ]]; then
+    echo "" > "$HOME/.pacmanupdates"
   fi
-fi
+  pacaur "$@"
+}
+
+# Find out which package owns a file.
+function owns {
+  local owned=$(which -p $1)
+  if [[ $? == 0 ]]; then
+    pacman -Qo "$owned"
+  else
+    pacman -Qo $1
+  fi
+}
 
 # Aliases
-
-# Installs packages from repositories.
-alias paci='sudo pacman --sync'
-
-# Installs packages from files.
-alias pacI='sudo pacman --upgrade'
-
-# Removes packages and unneeded dependencies.
-alias pacx='sudo pacman --remove'
-
-# Removes packages, their configuration, and unneeded dependencies.
-alias pacX='sudo pacman --remove --nosave --recursive'
-
-# Displays information about a package from the repositories.
-alias pacq='pacman --sync --info'
-
-# Displays information about a package from the local database.
-alias pacQ='pacman --query --info'
-
-# Searches for packages in the repositories.
-alias pacs='pacman --sync --recursive'
-
-# Searches for packages in the local database.
-alias pacS='pacman --query --recursive'
-
-# Lists orphan packages.
-alias pacman-list-orphans='sudo pacman --query --deps --unrequired'
-
-# Removes orphan packages.
-alias pacman-remove-orphans='sudo pacman --remove --recursive $(pacman --quiet --query --deps --unrequired)'
-
-# Synchronizes the local package and Arch Build System databases against the
-# repositories.
-if (( $+commands[abs] )); then
-  alias pacu='sudo pacman --sync --refresh && sudo abs'
-else
-  alias pacu='sudo pacman --sync --refresh'
-fi
-
-# Synchronizes the local package database against the repositories then
-# upgrades outdated packages.
-alias pacU='sudo pacman --sync --refresh --sysupgrade'
-
-unset _pacman_frontend
+alias ai='archinfo'
+alias build='makepkg -fi --skipinteg --clean'
 

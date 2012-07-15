@@ -45,9 +45,6 @@ if [[ "$TERM" == 'dumb' ]]; then
   return 1
 fi
 
-# Beep on error in line editor.
-setopt BEEP
-
 # Allow command line editing in an external editor.
 autoload -Uz edit-command-line
 zle -N edit-command-line
