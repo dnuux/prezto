@@ -252,7 +252,7 @@ function tomp3 {
 
 # Compile Zsh files.
 function zc {
-  find "$HOME/.oh-my-zsh/" -iname '*.zsh' -print0 | xargs -P2 -0 -i zsh -c "zcompile '{}'"
+  find "$OMZ" -iname '*.zsh' -print0 | xargs -P2 -0 -i zsh -c "zcompile '{}'"
   for rcfile in shenv shrc login profile; do
     zcompile "$HOME/.z${rcfile}"
   done
