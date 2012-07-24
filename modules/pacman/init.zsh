@@ -13,10 +13,8 @@
 
 # Pacman wrapper.
 function pac {
-  if [[ "$1" =~ ".*u" ]]; then
-    echo "" > "$HOME/.pacmanupdates"
-  fi
   pacaur "$@"
+  [[ "$1" =~ "S[y]*u" ]] && echo "" > "$HOME/.pacmanupdates"
 }
 
 # Find out which package owns a file.
