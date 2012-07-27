@@ -65,8 +65,11 @@ while (( $# > 0 )); do
       cd ..
     ;;
     (*)
-      print "$0: cannot extract: $1" >&2
-      success=1
+      # many filetypes are just renamed zip files
+      if ! unzip "$1" -d $extract_dir; then
+        print "$0: cannot extract: $1" >&2
+        success=1
+      fi
     ;;
   esac
 

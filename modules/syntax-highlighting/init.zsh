@@ -14,7 +14,7 @@ if zstyle -t ':omz:module:syntax-highlighting' color; then
     ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor)
   fi
 
-    # Aliases and functions
+  # Aliases and functions
   ZSH_HIGHLIGHT_STYLES[alias]='fg=blue,bold'
   ZSH_HIGHLIGHT_STYLES[function]='fg=blue,bold'
 

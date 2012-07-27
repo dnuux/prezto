@@ -7,7 +7,7 @@ abbreviations=(
   "If"    "| fgrep"
   "Ig"    "| grep"
   "Ih"    "| head"
-  "Il"    "| less"
+  "Il"    "| $PAGER"
   "Ip"    "| pbpaste"
   "Is"    "| sort"
   "It"    "| tail"
