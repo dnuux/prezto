@@ -46,7 +46,6 @@ alias e='${(z)EDITOR}'
 alias exe='chmod +x'
 alias h='history'
 alias ln="${aliases[ln]:-ln} -i"
-alias memcheck='valgrind --leak-check=full --show-reachable=yes'
 alias mkdir="${aliases[mkdir]:-mkdir} -p"
 alias myip='curl http://icanhazip.com'
 alias nocomment='egrep -v "^\s*(#|$)"'
@@ -152,6 +151,13 @@ fi
 if (( $+commands[python2] )); then
   alias python='python2'
   alias ipython='ipython2'
+fi
+
+# Valgrind
+if (( $+commands[valgrind] )); then
+  alias memcheck='valgrind --leak-check=full'
+  alias callgrind='valgrind --tool=callgrind'
+  alias cachegrind='valgrind --tool=cachegrind'
 fi
 
 # Miscellaneous
