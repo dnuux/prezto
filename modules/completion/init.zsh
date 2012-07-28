@@ -64,6 +64,9 @@ zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX
 # Don't complete unavailable commands.
 zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec))'
 
+# Don't complete working directory in parent directory.
+zstyle ':completion:*' ignore-parents pwd
+
 # Array completion element sorting.
 zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 

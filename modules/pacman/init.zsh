@@ -13,8 +13,7 @@
 
 # Pacman wrapper.
 function pac {
-  pacaur "$@"
-  [[ "$1" =~ "S[y]*u" ]] && echo "" > "$HOME/.pacmanupdates"
+  pacaur "$@" && [[ "$1" =~ "S[y]*u" ]] && echo "" > "$HOME/.pacmanupdates"
 }
 
 # Find out which package owns a file.

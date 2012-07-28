@@ -61,7 +61,6 @@ alias pu='pushd'
 alias redshift='redshift -l 60.1:24.5 -t 6500:4500 -b 0.9 -m vidmode'
 alias t='t --task-dir ~/tasks --delete-if-empty'
 alias type='type -a'
-alias undo='undo -i'
 alias vi='vim'
 alias wall='feh --bg-scale'
 alias x='extract'
@@ -74,32 +73,32 @@ alias -s {jpg,jpeg,bmp,gif,png}="feh"
 alias -s pdf="zathura"
 
 # ls
+if is-callable 'dircolors'; then
+  # GNU Core Utilities
+  alias ls='ls --group-directories-first'
+
+  if zstyle -t ':omz:module:utility:ls' color; then
+    if [[ -s "$HOME/.dir_colors" ]]; then
+      eval "$(dircolors "$HOME/.dir_colors")"
+    else
+      eval "$(dircolors)"
+    fi
+    alias ls="$aliases[ls] --color=auto"
+  else
+    alias ls="$aliases[ls] -F"
+  fi
+else
+  # BSD Core Utilities
+  if zstyle -t ':omz:module:utility:ls' color; then
+    export LSCOLORS="exfxcxdxbxegedabagacad"
+    alias ls="ls -G"
+  else
+    alias ls='ls -F'
+  fi
+fi
+
 if (( $+commands[ls++] )); then
   alias ls='ls++'
-else
-  if is-callable 'dircolors'; then
-    # GNU Core Utilities
-    alias ls='ls --group-directories-first'
-
-    if zstyle -t ':omz:module:utility:ls' color; then
-      if [[ -s "$HOME/.dir_colors" ]]; then
-        eval "$(dircolors "$HOME/.dir_colors")"
-      else
-        eval "$(dircolors)"
-      fi
-      alias ls="$aliases[ls] --color=auto"
-    else
-      alias ls="$aliases[ls] -F"
-    fi
-  else
-    # BSD Core Utilities
-    if zstyle -t ':omz:module:utility:ls' color; then
-      export LSCOLORS="exfxcxdxbxegedabagacad"
-      alias ls="ls -G"
-    else
-      alias ls='ls -F'
-    fi
-  fi
 fi
 
 alias l='ls'             # Darn fast fingers.
@@ -125,9 +124,8 @@ else
   if (( $+commands[xsel] )); then
     alias pbcopy='xsel --clipboard --input'
     alias pbpaste='xsel --clipboard --output'
-  fi
 
-  if (( $+commands[xclip] )); then
+  elif (( $+commands[xclip] )); then
     alias pbcopy='xclip -selection clipboard -in'
     alias pbpaste='xclip -selection clipboard -out'
   fi
