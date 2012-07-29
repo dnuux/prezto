@@ -17,7 +17,6 @@ function git-info-fast {
   local branch
   local branch_format
   local branch_formatted
-  local branch_info
   local -A info_formats
   local info_format
 
@@ -26,7 +25,7 @@ function git-info-fast {
   typeset -gA git_info_fast
 
   # Not in a repo.
-  if [[ ! -e ./.git ]]; then
+  if [[ ! -r ./.git ]]; then
     zstyle -a ':omz:module:git' info 'info_formats'
     for info_format in ${(k)info_formats}; do
       git_info_fast[$info_format]=''
