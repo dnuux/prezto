@@ -1,40 +1,11 @@
 # vim: set ft=zsh:
 #
-# Displays Git repository information. A simplification of git-info 
+# Displays Git repository information. A simplification of git-info
 # that shows less (and therefore runs faster).
 #
 # Authors:
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #   Patrick Brisbin <pbrisbin@gmail.com>
-#
-# Usage:
-#   Define the following styles in a prompt theme setup function.
-#
-#     # %a - Indicator to notify of added files.
-#     zstyle ':omz:module:git' added 'added:%a'
-#
-#     # %b - Branch name.
-#     zstyle ':omz:module:git' branch 'branch:%b'
-#
-#     # %d - Indicator to notify of deleted files.
-#     zstyle ':omz:module:git' deleted 'deleted:%d'
-#
-#     # %m - Indicator to notify of modified files.
-#     zstyle ':omz:module:git' modified 'modified:%m'
-#
-#     # %r - Indicator to notify of renamed files.
-#     zstyle ':omz:module:git' renamed 'renamed:%r'
-#
-#     # %U - Indicator to notify of unmerged files.
-#     zstyle ':omz:module:git' unmerged 'unmerged:%U'
-#
-#     # %u - Indicator to notify of untracked files.
-#     zstyle ':omz:module:git' untracked 'untracked:%u'
-#
-#     # Prompts.
-#     zstyle ':omz:module:git' info \
-#       'prompt'  ' git:(%b)' \
-#       'rprompt' '%a%d%m%r%u%U'
 #
 
 # Gets the Git status information.
@@ -43,31 +14,12 @@ function git-info-fast {
   setopt LOCAL_OPTIONS
   setopt EXTENDED_GLOB
 
-  local added=0
-  local added_format
-  local added_formatted
   local branch
   local branch_format
   local branch_formatted
   local branch_info
-  local deleted=0
-  local deleted_format
-  local deleted_formatted
   local -A info_formats
   local info_format
-  local modified=0
-  local modified_format
-  local modified_formatted
-  local renamed=0
-  local renamed_format
-  local renamed_formatted
-  local status_cmd
-  local unmerged=0
-  local unmerged_format
-  local unmerged_formatted
-  local untracked=0
-  local untracked_format
-  local untracked_formatted
 
   # Clean up previous $git_info.
   unset git_info_fast
@@ -83,22 +35,6 @@ function git-info-fast {
     return 0
   fi
 
-  # Use porcelain status for easy parsing.
-  status_cmd='git status --porcelain'
-
-  # Get current status.
-  while IFS=$'\n' read line; do
-    # Count added, deleted, modified, renamed, unmerged, untracked.
-    # T (type change) is undocumented, see http://git.io/FnpMGw.
-    # For a table of scenarii, see http://i.imgur.com/2YLu1.png.
-    [[ "$line" == ([ACDMT][\ MT]|[ACMT]D) ]] && (( added++     ))
-    [[ "$line" == [\ ACMRT]D              ]] && (( deleted++   ))
-    [[ "$line" == ?[MT]                   ]] && (( modified++  ))
-    [[ "$line" == R?                      ]] && (( renamed++   ))
-    [[ "$line" == (AA|DD|U?|?U)           ]] && (( unmerged++  ))
-    [[ "$line" == \?\?                    ]] && (( untracked++ ))
-  done < <(${(z)status_cmd} | cut -c 1-2 | 2>/dev/null)
-
   # Format branch.
   branch="${$(git symbolic-ref -q HEAD)##refs/heads/}"
   if [[ -n "$branch" ]]; then
@@ -106,53 +42,11 @@ function git-info-fast {
     zformat -f branch_formatted "$branch_format" "b:$branch"
   fi
 
-  # Format added.
-  if (( $added > 0 )); then
-    zstyle -s ':omz:module:git' added 'added_format'
-    zformat -f added_formatted "$added_format" "a:$added_format"
-  fi
-
-  # Format deleted.
-  if (( $deleted > 0 )); then
-    zstyle -s ':omz:module:git' deleted 'deleted_format'
-    zformat -f deleted_formatted "$deleted_format" "d:$deleted_format"
-  fi
-
-  # Format modified.
-  if (( $modified > 0 )); then
-    zstyle -s ':omz:module:git' modified 'modified_format'
-    zformat -f modified_formatted "$modified_format" "m:$modified"
-  fi
-
-  # Format renamed.
-  if (( $renamed > 0 )); then
-    zstyle -s ':omz:module:git' renamed 'renamed_format'
-    zformat -f renamed_formatted "$renamed_format" "r:$renamed"
-  fi
-
-  # Format unmerged.
-  if (( $unmerged > 0 )); then
-    zstyle -s ':omz:module:git' unmerged 'unmerged_format'
-    zformat -f unmerged_formatted "$unmerged_format" "U:$unmerged"
-  fi
-
-  # Format untracked.
-  if (( $untracked > 0 )); then
-    zstyle -s ':omz:module:git' untracked 'untracked_format'
-    zformat -f untracked_formatted "$untracked_format" "u:$untracked"
-  fi
-
   # Format info.
   zstyle -a ':omz:module:git' info 'info_formats'
   for info_format in ${(k)info_formats}; do
     zformat -f REPLY "$info_formats[$info_format]" \
-      "U:$unmerged_formatted" \
-      "a:$added_formatted" \
-      "b:$branch_formatted" \
-      "d:$deleted_formatted" \
-      "m:$modified_formatted" \
-      "r:$renamed_formatted" \
-      "u:$untracked_formatted"
+      "b:$branch_formatted"
     git_info_fast[$info_format]="$REPLY"
   done
 
