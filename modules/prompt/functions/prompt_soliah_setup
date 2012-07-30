@@ -21,9 +21,9 @@ function prompt_soliah_setup {
   zstyle ':vcs_info:*' enable git
 
   zstyle ':omz:module:editor' completing '%B%F{red}...%f%b'
-  zstyle ':vcs_info:git*' formats ' %{%F{blue}%}%s:%{%F{red}%}%b%{$reset_color%}%f'
+  zstyle ':vcs_info:git*' formats '%F{blue}%s:%F{red}%b'
 
-  PROMPT='%{%F{cyan}%}%n%f on %{%F{red}%}%M%f in %{%F{blue}%}%~%b%{$reset_color%}${(e)vcs_info_msg_0_}
+  PROMPT='%F{cyan}%n%f on %F{red}%M%f in %F{blue}%~ ${(e)vcs_info_msg_0_}%f
 $ '
   SPROMPT='zsh: correct %F{red}%R%f to %F{blue}%r%f [nyae]? '
 }
