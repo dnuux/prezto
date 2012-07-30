@@ -6,9 +6,7 @@ function prompt_soliah_precmd {
   setopt LOCAL_OPTIONS
   unsetopt XTRACE KSH_ARRAYS
 
-  if (( $+functions[git-info-fast] )); then
-    git-info-fast
-  fi
+  vcs_info
 }
 
 function prompt_soliah_setup {
@@ -19,13 +17,13 @@ function prompt_soliah_setup {
   autoload -Uz add-zsh-hook
   add-zsh-hook precmd prompt_soliah_precmd
 
+  autoload -Uz vcs_info
+  zstyle ':vcs_info:*' enable git
+
   zstyle ':omz:module:editor' completing '%B%F{red}...%f%b'
+  zstyle ':vcs_info:git*' formats ' %{%F{blue}%}%s:%{%F{red}%}%b%{$reset_color%}%f'
 
-  zstyle ':omz:module:git' branch ':%F{red}%b%f'
-  zstyle ':omz:module:git' info \
-    'prompt'  ' %F{blue}git%f$(coalesce "%b")%s' \
-
-  PROMPT='%{%F{cyan}%}%n%f on %{%F{red}%}%M%f in %{%F{blue}%}%~%b%{$reset_color%}${(e)git_info_fast[prompt]}
+  PROMPT='%{%F{cyan}%}%n%f on %{%F{red}%}%M%f in %{%F{blue}%}%~%b%{$reset_color%}${(e)vcs_info_msg_0_}
 $ '
   SPROMPT='zsh: correct %F{red}%R%f to %F{blue}%r%f [nyae]? '
 }
