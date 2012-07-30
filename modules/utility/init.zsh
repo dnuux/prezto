@@ -37,9 +37,7 @@ alias locate='noglob locate'
 
 # Define general aliases.
 alias _='sudo'
-alias agrep='agrep -2i'
 alias b='${(z)BROWSER}'
-alias cal='cal -m'
 alias cdd='cd -'
 alias die='pkill -9'
 alias e='${(z)EDITOR}'
@@ -47,24 +45,18 @@ alias exe='chmod +x'
 alias h='history'
 alias ln="${aliases[ln]:-ln} -i"
 alias mkdir="${aliases[mkdir]:-mkdir} -p"
-alias myip='curl http://icanhazip.com'
 alias nocomment='egrep -v "^\s*(#|$)"'
 alias off='xset dpms force off'
 alias p='${(z)PAGER}'
-alias path='echo -e ${PATH//:/\\n}'
 alias pf='ps aux | grep -i'
-alias pg='ping -c 1 google.com | tail -3'
 alias play='cmus-remote -o; mplayer -really-quiet'
 alias po='popd'
-alias ports='netstat --numeric --programs --inet'
 alias pu='pushd'
 alias redshift='redshift -l 60.1:24.5 -t 6500:4500 -b 0.9 -m vidmode'
 alias t='t --task-dir ~/tasks --delete-if-empty'
-alias type='type -a'
-alias vi='vim'
 alias wall='feh --bg-scale'
 alias x='extract'
-alias xl='ls-archive'
+alias xls='ls-archive'
 
 # Define suffix aliases.
 alias -s {htm,html,php}="$BROWSER"
