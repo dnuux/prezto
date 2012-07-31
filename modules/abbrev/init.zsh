@@ -15,6 +15,7 @@ abbreviations=(
   "Iv"    "| $EDITOR -"
   "Iw"    "| wc"
   "Ix"    "| xargs"
+  "dn"    "> /dev/null"
 )
 
 magic-abbrev-expand() {
