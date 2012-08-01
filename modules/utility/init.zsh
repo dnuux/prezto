@@ -40,7 +40,6 @@ alias _='sudo'
 alias b='${(z)BROWSER}'
 alias cdd='cd -'
 alias die='pkill -9'
-alias e='${(z)EDITOR}'
 alias exe='chmod +x'
 alias h='history'
 alias ln="${aliases[ln]:-ln} -i"
