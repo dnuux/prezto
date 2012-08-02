@@ -11,18 +11,13 @@
 
 # Functions
 
-# Pacman wrapper.
-function pac {
-  pacaur "$@" && [[ "$1" =~ "S[y]*u" ]] && echo "" > "$HOME/.pacmanupdates"
-}
-
 # Find out which package owns a file.
 function owns {
-  local owned=$(which -p $1)
-  if [[ $? == 0 ]]; then
-    pacman -Qo "$owned"
+  local owned=$(which -p "$1")
+  if (( $? )); then
+    pacman -Qo "$1"
   else
-    pacman -Qo $1
+    pacman -Qo "$owned"
   fi
 }
 
