@@ -38,6 +38,7 @@ alias locate='noglob locate'
 # Define general aliases.
 alias _='sudo'
 alias b='${(z)BROWSER}'
+alias build='makepkg -f --skipinteg'
 alias cdd='cd -'
 alias die='pkill -9'
 alias exe='chmod +x'

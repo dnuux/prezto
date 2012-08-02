@@ -6,18 +6,17 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
-pacman --query --explicit --info \
-  $(pacman --query --upgrades | cut -d ' ' -f 1) \
+sudo pacman --query --explicit --info \
+  $(pacman --query --upgrades | cut -d' ' -f 1) \
   | awk '
       BEGIN {
         FS=":"
       }
       /^Name/ {
-        print "\033[1;33m" $2
+        print $2
       }
       /^Description/ {
-        print "\033[1;37m  " $2
+        print $2
       }
-    ' \
-  | cut -c -100
+    '
 
