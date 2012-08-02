@@ -1,6 +1,7 @@
 typeset -Ag abbreviations
 abbreviations=(
   "jj"    "!$"
+  "jk"    "!-2$"
   "Ia"    "| awk"
   "Ic"    "| pbcopy"
   "Ie"    "| egrep"
