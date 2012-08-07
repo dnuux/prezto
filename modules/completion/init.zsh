@@ -73,7 +73,7 @@ zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX
 zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec))'
 
 # Don't complete working directory in parent directory.
-zstyle ':completion:*' ignore-parents pwd
+zstyle ':completion:*' ignore-parents 'pwd'
 
 # Array completion element sorting.
 zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters

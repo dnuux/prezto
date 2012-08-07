@@ -6,6 +6,7 @@
 #   Wei Dai <x@wei23.net>
 #
 
+# Return if requirements are not found.
 if (( ! $+commands[fasd] )); then
   return 1
 fi
