@@ -1,11 +1,15 @@
 #
-# A simple theme that only shows relevant information.
+# A theme based on Steve Losh's Extravagant Prompt with vcs_info integration.
+#
+# Authors:
+#   Steve Losh <steve@stevelosh.com>
+#   Bart Trojanowski <bart@jukie.net>
+#   Brian Carper <brian@carper.ca>
+#   soliah <soliah@gmail.com>
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
 function prompt_soliah_precmd {
-  setopt LOCAL_OPTIONS
-  unsetopt XTRACE KSH_ARRAYS
-
   vcs_info
 }
 
@@ -14,18 +18,22 @@ function prompt_soliah_setup {
   unsetopt XTRACE KSH_ARRAYS
   prompt_opts=(cr percent subst)
 
+  # Load required functions.
   autoload -Uz add-zsh-hook
+  autoload -Uz vcs_info
+
+  # Add hook for calling vcs_info before each command.
   add-zsh-hook precmd prompt_soliah_precmd
 
-  autoload -Uz vcs_info
+  # Set vcs_info parameters.
   zstyle ':vcs_info:*' enable git
+  zstyle ':vcs_info:git:*' formats "%F{blue}%s:%F{red}%b%f"
 
-  zstyle ':omz:module:editor' completing '%B%F{red}...%f%b'
-  zstyle ':vcs_info:git*' formats '%F{blue}%s:%F{red}%b'
-
-  PROMPT='%F{cyan}%n%f on %F{red}%M%f in %F{blue}%~ ${(e)vcs_info_msg_0_}%f
-$ '
-  SPROMPT='zsh: correct %F{red}%R%f to %F{blue}%r%f [nyae]? '
+  # Define prompts.
+  PROMPT="%F{cyan}%n%f at %F{red}%m%f in %F{blue}%~%f "'${vcs_info_msg_0_}'"
+$ "
+  SPROMPT="zsh: correct %F{red}%R%f to %F{blue}%r%f [nyae]? "
 }
 
 prompt_soliah_setup "$@"
+
