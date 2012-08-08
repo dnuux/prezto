@@ -28,7 +28,6 @@ alias man='nocorrect man'
 alias mkdir='nocorrect mkdir'
 alias mv='nocorrect mv'
 alias rm='nocorrect rm'
-alias scp='nocorrect scp'
 
 # Disable globbing.
 alias calc='noglob calc'
@@ -36,6 +35,8 @@ alias fc='noglob fc'
 alias find='noglob find'
 alias history='noglob history'
 alias locate='noglob locate'
+alias rsync='noglob rsync'
+alias scp='noglob scp'
 
 # Define general aliases.
 alias _='sudo'
