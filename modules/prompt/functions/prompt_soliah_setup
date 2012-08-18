@@ -30,7 +30,7 @@ function prompt_soliah_setup {
   zstyle ':vcs_info:git:*' formats "%F{blue}%s:%F{red}%b%f"
 
   # Define prompts.
-  PROMPT="%F{cyan}%n%f at %F{red}%m%f in %F{blue}%~%f "'${vcs_info_msg_0_}'"
+  PROMPT="%F{blue}%n%f at %F{red}%m%f in %F{blue}%~%f "'${vcs_info_msg_0_}'"
 $ "
   SPROMPT="zsh: correct %F{red}%R%f to %F{blue}%r%f [nyae]? "
 }

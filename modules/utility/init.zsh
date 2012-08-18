@@ -211,9 +211,7 @@ function up {
 
 # Set the CPU governor.
 function cpu {
-  for i in 0 1; do
-    sudo cpufreq-set -c $i -g $1
-  done
+    sudo cpupower frequency-set -g $1
 }
 
 # Swap two filenames.
