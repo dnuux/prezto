@@ -46,6 +46,7 @@ alias cdd='cd -'
 alias die='pkill -9'
 alias exe='chmod +x'
 alias h='history'
+alias iotop='sudo iotop -Poa'
 alias ln="${aliases[ln]:-ln} -i"
 alias mkdir="${aliases[mkdir]:-mkdir} -p"
 alias nocomment='egrep -v "^\s*(#|$)"'
@@ -211,7 +212,7 @@ function up {
 
 # Set the CPU governor.
 function cpu {
-    sudo cpupower frequency-set -g $1
+  sudo cpupower frequency-set -g $1
 }
 
 # Swap two filenames.
