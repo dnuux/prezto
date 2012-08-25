@@ -58,14 +58,13 @@ alias po='popd'
 alias pu='pushd'
 alias redshift='redshift -l 60.1:24.5 -t 6500:4500 -b 0.9 -m vidmode'
 alias t='t --task-dir ~/tasks --delete-if-empty'
-alias wall='feh --bg-scale'
 alias x='extract'
 alias xls='ls-archive'
 
 # Define suffix aliases.
 alias -s {htm,html,php}="$BROWSER"
 alias -s {txt,c,cpp,h,conf,cfg}="$EDITOR"
-alias -s {jpg,jpeg,bmp,gif,png}="feh"
+alias -s {jpg,jpeg,bmp,gif,png}="sxiv"
 alias -s pdf="zathura"
 
 # ls
