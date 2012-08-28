@@ -1,3 +1,11 @@
+#
+# Defines abbreviations for common commands.
+#
+# Authors:
+#   trapd00r <m@japh.se>
+#   dnuux <dnuuxx@gmail.com>
+#
+
 typeset -Ag abbreviations
 abbreviations=(
   "jj"    "!$"

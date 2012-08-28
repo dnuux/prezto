@@ -3,6 +3,7 @@
 #
 # Authors:
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
+#   dnuux <dnuuxx@gmail.com>
 #
 
 # Return if requirements are not found.
