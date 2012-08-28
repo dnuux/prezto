@@ -5,6 +5,7 @@
 #   Robby Russell <robby@planetargon.com>
 #   Suraj N. Kurapati <sunaku@gmail.com>
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
+#   dnuux <dnuuxx@gmail.com>
 #
 
 # Load dependencies.

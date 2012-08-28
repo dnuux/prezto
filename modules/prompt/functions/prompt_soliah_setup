@@ -1,12 +1,10 @@
 #
-# A theme based on Steve Losh's Extravagant Prompt with vcs_info integration.
+# A simple and fast theme with vcs_info integration.
 #
 # Authors:
-#   Steve Losh <steve@stevelosh.com>
-#   Bart Trojanowski <bart@jukie.net>
-#   Brian Carper <brian@carper.ca>
 #   soliah <soliah@gmail.com>
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
+#   dnuux <dnuuxx@gmail.com>
 #
 
 function prompt_soliah_precmd {
