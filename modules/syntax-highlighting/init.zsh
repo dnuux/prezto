@@ -45,5 +45,4 @@ ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]="fg=green"
 
 # Patterns
 ZSH_HIGHLIGHT_PATTERNS+=('rm -rf' 'fg=white,bold,bg=red')
-ZSH_HIGHLIGHT_PATTERNS+=('sudo' 'fg=white,bold,bg=red')
 
