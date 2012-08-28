@@ -6,6 +6,10 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+# Load dependencies.
+omodload 'editor'
+
+# Source module files.
 source "${0:h}/external/zsh-history-substring-search.zsh"
 
 #
