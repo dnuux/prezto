@@ -226,7 +226,7 @@ function swap {
 # Replace spaces with underscores in filenames.
 function remove_spaces {
   while (( $# )); do
-    mv "$1" `echo "$1" | tr ' ' _`
+    mv "$1" $(tr ' ' _ <<< "$1")
     shift
   done
 }
