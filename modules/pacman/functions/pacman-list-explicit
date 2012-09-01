@@ -7,7 +7,6 @@
 #
 
 pacman --query --explicit --info \
-  $(pacman --query --upgrades | cut -d ' ' -f 1) \
   | awk '
       BEGIN {
         FS=":"
