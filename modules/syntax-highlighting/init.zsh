@@ -25,6 +25,7 @@ ZSH_HIGHLIGHT_STYLES[alias]='fg=blue,bold'
 ZSH_HIGHLIGHT_STYLES[function]='fg=blue,bold'
 
 # Commands and builtins
+ZSH_HIGHLIGHT_STYLES[precommand]="fg=magenta,bold"
 ZSH_HIGHLIGHT_STYLES[command]="fg=blue,bold"
 ZSH_HIGHLIGHT_STYLES[hashed-command]="fg=blue,bold"
 ZSH_HIGHLIGHT_STYLES[builtin]="fg=blue,bold"
@@ -46,5 +47,5 @@ ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]="fg=green"
 ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]="fg=green"
 
 # Patterns
-ZSH_HIGHLIGHT_PATTERNS+=('rm -rf' 'fg=white,bold,bg=red')
+ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=white,bold,bg=red')
 
