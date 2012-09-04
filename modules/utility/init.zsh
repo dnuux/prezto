@@ -170,7 +170,7 @@ function mkdcd {
 
 # Changes to a directory and lists its contents.
 function cdl {
-  builtin cd "${@:-$HOME}" && ls "${(@)argv[1,-2]}"
+  builtin cd "${argv[-1]:-$HOME}" && ls "${(@)argv[1,-2]}"
 }
 
 # Pushes an entry onto the directory stack and lists its contents.
@@ -252,8 +252,9 @@ function tomp3 {
 
 # Compile Zsh files.
 function zc {
-  find "$OMZ" -iname '*.zsh' -print0 | xargs -P2 -0 -i zsh -c "zcompile '{}'"
-  for rcfile in shenv shrc login profile; do
+  find "${ZDOTDIR:-$HOME}/.zprezto" -type f -name '*.zsh' -print0 \
+    | xargs -P2 -0 -i zsh -c "zcompile '{}'"
+  for rcfile in shenv shrc login profile preztorc; do
     zcompile "$HOME/.z${rcfile}"
   done
 }

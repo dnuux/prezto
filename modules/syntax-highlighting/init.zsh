@@ -20,6 +20,8 @@ if (( ${#ZSH_HIGHLIGHT_HIGHLIGHTERS[@]} == 0 )); then
   ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor)
 fi
 
+# Highlight styles
+
 # Aliases and functions
 ZSH_HIGHLIGHT_STYLES[alias]='fg=blue,bold'
 ZSH_HIGHLIGHT_STYLES[function]='fg=blue,bold'

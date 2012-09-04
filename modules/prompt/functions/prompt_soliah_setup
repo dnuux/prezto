@@ -7,10 +7,6 @@
 #   dnuux <dnuuxx@gmail.com>
 #
 
-function prompt_soliah_precmd {
-  vcs_info
-}
-
 function prompt_soliah_setup {
   setopt LOCAL_OPTIONS
   unsetopt XTRACE KSH_ARRAYS
@@ -21,7 +17,7 @@ function prompt_soliah_setup {
   autoload -Uz vcs_info
 
   # Add hook for calling vcs_info before each command.
-  add-zsh-hook precmd prompt_soliah_precmd
+  add-zsh-hook precmd vcs_info
 
   # Set vcs_info parameters.
   zstyle ':vcs_info:*' enable git
