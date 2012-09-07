@@ -25,7 +25,7 @@ function prompt_soliah_setup {
 
   # Define prompts.
   PROMPT="%F{blue}%n%f at %F{red}%m%f in %F{blue}%~%f "'${vcs_info_msg_0_}'"
-$ "
+%(?.%F{green}.%F{red})$%f "
   SPROMPT="zsh: correct %F{red}%R%f to %F{blue}%r%f [nyae]? "
 }
 
