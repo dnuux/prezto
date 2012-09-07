@@ -66,6 +66,7 @@ alias xls='ls-archive'
 alias -s {htm,html,php}="$BROWSER"
 alias -s {txt,c,cpp,h,conf,cfg}="$EDITOR"
 alias -s {jpg,jpeg,bmp,gif,png}="sxiv"
+alias -s {aac,avi,flv,mkv,mp4}="mplayer"
 alias -s pdf="zathura"
 
 # ls
@@ -255,7 +256,7 @@ function zc {
   find "${ZDOTDIR:-$HOME}/.zprezto" -type f -name '*.zsh' -print0 \
     | xargs -P2 -0 -i zsh -c "zcompile '{}'"
   for rcfile in shenv shrc login profile preztorc; do
-    zcompile "$HOME/.z${rcfile}"
+    [[ -r "$HOME/.z${rcfile}" ]] && zcompile "$HOME/.z${rcfile}"
   done
 }
 
