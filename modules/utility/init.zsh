@@ -170,7 +170,7 @@ function mkdcd {
 
 # Changes to a directory and lists its contents.
 function cdl {
-  builtin cd "${argv[-1]:-$HOME}" && ls "${(@)argv[1,-2]}"
+  builtin cd "$argv[-1]" && ls "${(@)argv[1,-2]}"
 }
 
 # Pushes an entry onto the directory stack and lists its contents.
