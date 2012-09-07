@@ -17,7 +17,7 @@ if [[ "${commands[fasd]}" -nt "$cache_file" || ! -s "$cache_file" ]]; then
   init_args='posix-alias zsh-hook'
 
   # Load zsh-{ccomp,wcomp} when completion is loaded
-  if zstyle -t ':omz:module:completion' loaded; then
+  if zstyle -t ':prezto:module:completion' loaded; then
     init_args+=' zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install'
   fi
 
