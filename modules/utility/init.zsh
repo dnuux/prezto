@@ -201,7 +201,11 @@ function psu {
 
 # Handy calculator.
 function calc {
-  awk "BEGIN { print $@ }"
+  if (( $+commands[bc] )); then
+    bc <<< "scale=4; $@"
+  else
+    awk "BEGIN { print $@ }"
+  fi
 }
 
 # Go up the directory hierarchy.
