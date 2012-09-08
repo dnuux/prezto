@@ -18,6 +18,9 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zpreztorc" ]]; then
   source "${ZDOTDIR:-$HOME}/.zpreztorc"
 fi
 
+# Set prezto location
+export PREZTO_HOME="${0:h}"
+
 # Disable color and theme in dumb terminals.
 if [[ "$TERM" == 'dumb' ]]; then
   zstyle ':prezto:*:*' color 'no'
@@ -35,7 +38,7 @@ for zfunction ("$zfunctions[@]") autoload -Uz "$zfunction"
 unset zfunction{s,}
 
 # Source files (the order matters).
-source "${0:h}/helper.zsh"
+source "$PREZTO_HOME/helper.zsh"
 
 # Load Prezto modules.
 zstyle -a ':prezto:load' pmodule 'pmodules'

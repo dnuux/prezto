@@ -253,7 +253,7 @@ function tomp3 {
 
 # Compile Zsh files.
 function zc {
-  find "${ZDOTDIR:-$HOME}/.zprezto" -type f -name '*.zsh' -print0 \
+  find "$PREZTO_HOME" -type f -name '*.zsh' -print0 \
     | xargs -P2 -0 -i zsh -c "zcompile '{}'"
   for rcfile in shenv shrc login profile preztorc; do
     [[ -r "$HOME/.z${rcfile}" ]] && zcompile "$HOME/.z${rcfile}"
