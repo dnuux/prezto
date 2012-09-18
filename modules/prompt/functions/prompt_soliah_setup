@@ -19,15 +19,15 @@ function prompt_soliah_setup {
   # Add hook for calling vcs_info before each command.
   add-zsh-hook precmd vcs_info
 
-  # Set vcs_info parameters.
   zstyle ':vcs_info:*' enable git
-  zstyle ':vcs_info:git:*' formats "%F{blue}%s:%F{red}%b%f"
+  zstyle ':vcs_info:git:*' formats "%F{blue}%s:%F{green}%b%f"
+  zstyle ':prezto:module:editor:keymap' alternate '%B%F{blue}✱%f%b'
 
   # Define prompts.
-  PROMPT="%F{blue}%n%f at %F{red}%m%f in %F{blue}%~%f "'${vcs_info_msg_0_}'"
-%(?.%F{green}.%F{red})$%f "
+  PROMPT='%F{blue}%n%f at %F{red}%m%f in %F{cyan}%~%f ${vcs_info_msg_0_}
+%(?.%F{green}.%F{red})$%f '
+  RPROMPT='${editor_info[keymap]}'
   SPROMPT="zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? "
-  RPROMPT=''
 }
 
 prompt_soliah_setup "$@"
