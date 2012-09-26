@@ -48,7 +48,7 @@ function set-titles-with-command {
   fi
 
   emulate -L zsh
-  setopt LOCAL_OPTIONS EXTENDED_GLOB
+  setopt EXTENDED_GLOB
 
   # Get the command name that is under job control.
   if [[ "${1[(w)1]}" == (fg|%*)(\;|) ]]; then
@@ -80,6 +80,9 @@ function set-titles-with-command {
 
 # Sets the tab and window titles with a given path.
 function set-titles-with-path {
+  emulate -L zsh
+  setopt EXTENDED_GLOB
+
   local absolute_path="${${1:a}:-$PWD}"
 
   if [[ "$TERM_PROGRAM" == 'Apple_Terminal' ]]; then
