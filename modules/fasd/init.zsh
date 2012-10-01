@@ -43,18 +43,3 @@ unset cache_file init_args
 alias j='z'                       # For autojump converts.
 alias v='f -t -e vim -b viminfo'  # Quickly open files with vim.
 
-#
-# Key Bindings
-#
-
-for keymap in 'emacs' 'viins'; do
-  # C-x C-a completes files and direcotries.
-  bindkey -M "$keymap" "$key_info[Control]X$key_info[Control]A" fasd-complete
-
-  # C-x C-d completes directories.
-  bindkey -M "$keymap" "$key_info[Control]X$key_info[Control]D" fasd-complete-d
-
-  # C-x C-f completes files.
-  bindkey -M "$keymap" "$key_info[Control]X$key_info[Control]F" fasd-complete-f
-done
-
