@@ -6,6 +6,9 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+# Load dependencies.
+pmodload 'editor'
+
 # Return if requirements are not found.
 if (( ! $+commands[fasd] )); then
   return 1

@@ -6,7 +6,7 @@ Fasd
 directories by keeping track of files and directories  that were previously
 accessed.
 
-For completion to work, this module should be loaded **after** the *completion*
+For completion to work, this module must be loaded **after** the *completion*
 module.
 
 The Prezto Fasd configuration differs from the default. The default aliases have
@@ -20,21 +20,8 @@ Aliases
 Completion
 ----------
 
-Type a comma-separated query on *any command* and use the following key
-combination:
-
-  - <kbd>Ctrl-x Ctrl-a</kbd> to complete files and directories.
-  - <kbd>Ctrl-x Ctrl-d</kbd> to complete directories.
-  - <kbd>Ctrl-x Ctrl-f</kbd> to complete files.
-
-Alternatively, type `,`, `f,`, `d,` in front of a comma-separated query or type
-`,,`,  `,,f`, `,,d` at the end of a comma-separated query then hit
-<kbd>tab</kbd>.
-
-### Overrides
-
-  - <kbd>Ctrl-x Ctrl-f</kbd> overrides the `vi-next-char` binding in the Emacs
-  keyboard layout.
+Type `,`, `f,`, `d,` in front of a comma-separated query or type `,,`,  `,,f`,
+`,,d` at the end of a comma-separated query then hit <kbd>tab</kbd>.
 
 Authors
 -------
