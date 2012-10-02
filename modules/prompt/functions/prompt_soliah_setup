@@ -21,7 +21,7 @@ function prompt_soliah_setup {
 
   zstyle ':vcs_info:*' enable git
   zstyle ':vcs_info:git:*' formats "%F{blue}%s:%F{green}%b%f"
-  zstyle ':prezto:module:editor:keymap' alternate '%B%F{blue}✱%f%b'
+  zstyle ':prezto:module:editor:info:keymap:alternate' format '%B%F{blue}✱%f%b'
 
   # Define prompts.
   PROMPT='%F{blue}%n%f at %F{red}%m%f in %F{cyan}%~%f ${vcs_info_msg_0_}
