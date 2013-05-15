@@ -149,12 +149,6 @@ else
   alias topm='top -o vsize'
 fi
 
-# This is so idiotic.
-if (( $+commands[python2] )); then
-  alias python='python2'
-  alias ipython='ipython2'
-fi
-
 # Valgrind
 if (( $+commands[valgrind] )); then
   alias memcheck='valgrind --leak-check=full'
