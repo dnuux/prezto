@@ -20,7 +20,7 @@ _ssh_agent_env="${_ssh_agent_env:-$TMPDIR/ssh-agent.env}"
 _ssh_agent_sock="$TMPDIR/ssh-agent.sock"
 
 # Start ssh-agent if not started.
-if [[ ! -S "$SSH_AUTH_SOCK" ]]; then
+if [[ ! -S "${_ssh_agent_sock}" ]]; then
   eval "$(ssh-agent | sed '/^echo /d' | tee "$_ssh_agent_env")"
 else
   # Export environment variables.
@@ -30,7 +30,7 @@ fi
 # Load identities.
 if ssh-add -l 2>&1 | grep 'The agent has no identities'; then
   zstyle -a ':prezto:module:ssh:load' identities '_ssh_identities'
-  if (( ${#identities} > 0 )); then
+  if (( ${#_ssh_identities[@]} > 0 )); then
     ssh-add "$_ssh_dir/${^_ssh_identities[@]}"
   else
     ssh-add
