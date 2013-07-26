@@ -60,8 +60,8 @@ alias pu='pushd'
 alias redshift='redshift -l 60.1:24.5 -t 6500:4500 -b 0.9 -m vidmode'
 alias t='t --task-dir ~/tasks --delete-if-empty'
 alias vcat='vimcat'
-alias x='extract'
-alias xls='ls-archive'
+alias x='unarchive'
+alias xls='lsarchive'
 
 # Define suffix aliases.
 alias -s {htm,html,php}="$BROWSER"
