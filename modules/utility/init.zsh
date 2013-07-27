@@ -53,6 +53,7 @@ alias mkdir="${aliases[mkdir]:-mkdir} -p"
 alias nocomment='egrep -v "^\s*(#|$)"'
 alias off='xset dpms force off'
 alias p='${(z)PAGER}'
+alias pac='pacaur'
 alias pf='ps aux | grep -i'
 alias play='mpc pause -q; mplayer -really-quiet'
 alias po='popd'
