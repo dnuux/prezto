@@ -19,7 +19,6 @@ setopt CORRECT
 #
 
 # Disable correction.
-alias ack='nocorrect ack'
 alias cd='nocorrect cd'
 alias cp='nocorrect cp'
 alias gcc='nocorrect gcc'
@@ -41,25 +40,20 @@ alias scp='noglob scp'
 
 # Define general aliases.
 alias _='sudo'
-alias b='${(z)BROWSER}'
-alias build='makepkg -f --skipinteg'
 alias cdd='cd -'
 alias die='pkill -9'
 alias exe='chmod +x'
 alias h='history'
-alias iotop='sudo iotop -Poa'
 alias ln="${aliases[ln]:-ln} -i"
 alias mkdir="${aliases[mkdir]:-mkdir} -p"
 alias nocomment='egrep -v "^\s*(#|$)"'
 alias off='xset dpms force off'
 alias p='${(z)PAGER}'
 alias pac='pacaur'
-alias pf='ps aux | grep -i'
 alias play='mpc pause -q; mplayer -really-quiet'
 alias po='popd'
 alias pu='pushd'
 alias redshift='redshift -l 60.1:24.5 -t 6500:4500 -b 0.9 -m vidmode'
-alias t='t --task-dir ~/tasks --delete-if-empty'
 alias vcat='vimcat'
 alias x='unarchive'
 alias xls='lsarchive'
@@ -241,20 +235,6 @@ function remove_spaces {
 # Backup documents from a remote computer.
 function backup {
   rsync -avz -e ssh "$1":Documents/ "$HOME/backups/$1"
-}
-
-# Remove short MP3 files in current directory.
-function delete_short_mp3 {
-  for file in *.mp3; do
-    if (( $(mp3info -p "%S" "$file") < ${1:-60} )); then
-      rm "$file"
-    fi
-  done
-}
-
-# Convert a video file to an MP3 file.
-function tomp3 {
-  ffmpeg -i "$1" -vn -ac 2 -ar 44100 -ab 320k -f mp3 "${2:-${1%.*}.mp3}"
 }
 
 # Compile Zsh files.
