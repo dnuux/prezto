@@ -47,10 +47,8 @@ alias h='history'
 alias ln="${aliases[ln]:-ln} -i"
 alias mkdir="${aliases[mkdir]:-mkdir} -p"
 alias nocomment='egrep -v "^\s*(#|$)"'
-alias off='xset dpms force off'
 alias p='${(z)PAGER}'
 alias pac='pacaur'
-alias play='mpc pause -q; mplayer -really-quiet'
 alias po='popd'
 alias pu='pushd'
 alias redshift='redshift -l 60.1:24.5 -t 6500:4500 -b 0.9 -m vidmode'
@@ -62,7 +60,7 @@ alias xls='lsarchive'
 alias -s {htm,html,php}="$BROWSER"
 alias -s {txt,c,cpp,h,conf,cfg}="$EDITOR"
 alias -s {jpg,jpeg,bmp,gif,png}="sxiv"
-alias -s {aac,avi,flv,mkv,mp4}="mplayer"
+alias -s {aac,avi,flv,mkv,mp4}="mpv"
 alias -s pdf="zathura"
 
 # ls
