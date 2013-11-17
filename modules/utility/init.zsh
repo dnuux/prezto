@@ -51,7 +51,6 @@ alias p='${(z)PAGER}'
 alias pac='pacaur'
 alias po='popd'
 alias pu='pushd'
-alias redshift='redshift -l 60.1:24.5 -t 6500:4500 -b 0.9 -m vidmode'
 alias vcat='vimcat'
 alias x='unarchive'
 alias xls='lsarchive'
@@ -215,11 +214,6 @@ function up {
   for parent in {1..${1:-1}}; do
     builtin cd ..
   done
-}
-
-# Set the CPU governor.
-function cpu {
-  sudo cpupower frequency-set -g $1
 }
 
 # Swap two filenames.
