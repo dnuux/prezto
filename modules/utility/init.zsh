@@ -40,6 +40,7 @@ alias scp='noglob scp'
 
 # Define general aliases.
 alias _='sudo'
+alias b='${(z)BROWSER}'
 alias cdd='cd -'
 alias die='pkill -9'
 alias exe='chmod +x'
@@ -153,7 +154,7 @@ fi
 # Miscellaneous
 
 # Serves a directory via HTTP.
-alias http-serve='python -m SimpleHTTPServer'
+alias http-serve='python -m http.server'
 
 #
 # Functions
@@ -238,5 +239,10 @@ function zc {
   for rcfile in shenv shrc login profile preztorc; do
     [[ -r "$HOME/.z${rcfile}" ]] && zcompile "$HOME/.z${rcfile}"
   done
+}
+
+# Watch live television.
+function tv {
+  mpv -quiet "$(yle-dl --showurl http://areena.yle.fi/tv/suora/$1)"
 }
 
