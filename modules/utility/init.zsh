@@ -52,7 +52,6 @@ alias p='${(z)PAGER}'
 alias pac='pacaur'
 alias po='popd'
 alias pu='pushd'
-alias vcat='vimcat'
 alias x='unarchive'
 alias xls='lsarchive'
 
