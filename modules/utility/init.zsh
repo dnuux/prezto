@@ -42,7 +42,6 @@ alias scp='noglob scp'
 alias _='sudo'
 alias b='${(z)BROWSER}'
 alias cdd='cd -'
-alias die='pkill -9'
 alias exe='chmod +x'
 alias h='history'
 alias ln="${aliases[ln]:-ln} -i"
@@ -57,9 +56,9 @@ alias xls='lsarchive'
 
 # Define suffix aliases.
 alias -s {htm,html,php}="$BROWSER"
-alias -s {txt,c,cpp,h,conf,cfg}="$EDITOR"
+alias -s {txt,c,cpp,h,hs,conf,cfg}="$EDITOR"
 alias -s {jpg,jpeg,bmp,gif,png}="sxiv"
-alias -s {aac,avi,flv,mkv,mp4}="mpv"
+alias -s {aac,avi,flv,mkv,mp3,mp4}="mpv"
 alias -s pdf="zathura"
 
 # ls
