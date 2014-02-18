@@ -12,19 +12,15 @@ abbreviations=(
   "jk"    "!-2$"
   "Ia"    "| awk"
   "Ic"    "| pbcopy"
-  "Ie"    "| egrep"
-  "If"    "| fgrep"
   "Ig"    "| grep"
   "Ih"    "| head"
   "Il"    "| $PAGER"
   "Ip"    "| pbpaste"
   "Is"    "| sort"
   "It"    "| tail"
-  "Iu"    "| uniq"
   "Iv"    "| $EDITOR -"
   "Iw"    "| wc"
   "Ix"    "| xargs"
-  "dn"    "> /dev/null"
 )
 
 magic-abbrev-expand() {
