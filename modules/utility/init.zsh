@@ -229,11 +229,6 @@ function remove_spaces {
   done
 }
 
-# Backup documents from a remote computer.
-function backup {
-  rsync -avz -e ssh "$1":Documents/ "$HOME/backups/$1"
-}
-
 # Compile Zsh files.
 function zc {
   find "${ZDOTDIR:-$HOME}/.zprezto" -type f -name '*.zsh' -print0 \
