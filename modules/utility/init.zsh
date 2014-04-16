@@ -213,22 +213,6 @@ function up {
   done
 }
 
-# Swap two filenames.
-function swap {
-  local tmpfile=tmp.$$
-  mv "$1" $tmpfile
-  mv "$2" "$1"
-  mv $tmpfile "$2"
-}
-
-# Replace spaces with underscores in filenames.
-function remove_spaces {
-  while (( $# )); do
-    mv "$1" $(tr ' ' _ <<< "$1")
-    shift
-  done
-}
-
 # Compile Zsh files.
 function zc {
   find "${ZDOTDIR:-$HOME}/.zprezto" -type f -name '*.zsh' -print0 \
