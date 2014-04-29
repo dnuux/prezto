@@ -51,6 +51,7 @@ alias p='${(z)PAGER}'
 alias pac='pacaur'
 alias po='popd'
 alias pu='pushd'
+alias r='PYTHONOPTIMIZE=2 /usr/bin/ranger'
 alias x='unarchive'
 alias xls='lsarchive'
 
